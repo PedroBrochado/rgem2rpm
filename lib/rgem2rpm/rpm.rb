@@ -25,11 +25,11 @@ class RGem2Rpm::Rpm
     @dependencies = args[:dependencies]
   end
   
-  def create
+  def create options
     # create spec
     spec
     # build rpm
-    build
+	  build unless options[:keep_source]
   end
   
   def installlist
@@ -139,8 +139,8 @@ class RGem2Rpm::Rpm
   end
   
   # clean temporary files
-  def clean
-    FileUtils.rm_rf "#{@name}-#{@version}.spec"
+  def clean options
+    FileUtils.rm_rf "#{@name}-#{@version}.spec" unless options[:keep_source]
     FileUtils.rm_rf "./rpmtemp"
   end
   

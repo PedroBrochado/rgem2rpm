@@ -15,10 +15,10 @@ class RGem2Rpm::Converter
       # build rpm
       rpm = RGem2Rpm::Rpm.new args
       objects << rpm
-      rpm.create
+      rpm.create options
     rescue => e
       # clean temporary files
-      objects.each { |obj| obj.clean }
+      objects.each { |obj| obj.clean(options) }
       # write error message
       puts e.message
       exit

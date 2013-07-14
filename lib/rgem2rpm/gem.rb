@@ -38,10 +38,10 @@ class RGem2Rpm::Gem
   end
   
   # clean temporary files
-  def clean
+  def clean options
     return if @installdir.nil?
     FileUtils.rm_rf @installdir
-    FileUtils.rm_rf "#{@installdir}.tar.gz"
+    FileUtils.rm_rf "#{@installdir}.tar.gz" unless options[:keep_source]
   end
   
   private
