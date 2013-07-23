@@ -21,7 +21,7 @@ class RGem2Rpm::Converter
       objects.each { |obj| obj.clean }
       # write error message
       puts e.message
-      exit
+      exit 1
     end
   end
 end
